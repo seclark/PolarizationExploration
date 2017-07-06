@@ -40,9 +40,9 @@ pp = np.pi/2-np.asarray(cg.b.rad)
 #taugalfa = hp.pixelfunc.get_interp_val(tau ,pp, tt, nest=True)
 
 TQUcube = np.zeros([3, ghdu[0].header['NAXIS2'], ghdu[0].header['NAXIS1']])
-TQUcube[0, :, :] = hp.pixelfunc.get_interp_val(Tdata.T ,pp, tt, nest=False)
-TQUcube[1, :, :] = hp.pixelfunc.get_interp_val(Qdata.T ,pp, tt, nest=False)
-TQUcube[2, :, :] = hp.pixelfunc.get_interp_val(Udata.T ,pp, tt, nest=False)
+TQUcube[0, :, :] = hp.pixelfunc.get_interp_val(Tdata ,pp, tt, nest=False)
+TQUcube[1, :, :] = hp.pixelfunc.get_interp_val(Qdata ,pp, tt, nest=False)
+TQUcube[2, :, :] = hp.pixelfunc.get_interp_val(Udata ,pp, tt, nest=False)
 
 #planckTproj = hp.pixelfunc.get_interp_val(Tdata.T ,pp, tt, nest=False)
 #planckQproj = hp.pixelfunc.get_interp_val(Qdata.T ,pp, tt, nest=False)
