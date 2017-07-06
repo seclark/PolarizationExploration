@@ -22,7 +22,7 @@ Udata = tbdata.field('U_STOKES').reshape(49152*1024)
 #polfrac = np.sqrt(Qdata**2 + Udata**2)/Tdata
 
 #Gfile = '/Volumes/DataDavy/GALFA/DR2/FullSkyWide/GALFA_HI_W_S0900_V-090.9kms.fits'
-Gfile = '/disks/jansky/a/users/goldston/zheng/151019_NHImaps_SRcorr/data/GNHImaps_SRCORR_final/NHImaps/'
+Gfile = '/disks/jansky/a/users/goldston/zheng/151019_NHImaps_SRcorr/data/GNHImaps_SRCORR_final/NHImaps/GALFA-HI_NHI_VLSR-90+90kms.fits'
 ghdu = fits.open(Gfile)
 #plt.figure(figsize=(20,10))
 #plt.imshow(np.sum(ghdu[0].data[:, 100:900, 100:5000], 0))
