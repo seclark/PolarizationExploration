@@ -4,6 +4,7 @@ from astropy import wcs
 from astropy import units as u
 from astropy.coordinates import SkyCoord
 import numpy as np
+import healpy as hp
 
 #path = "/Volumes/DataDavy/Planck/"
 path = "/disks/jansky/a/users/goldston/susan/Planck/"
