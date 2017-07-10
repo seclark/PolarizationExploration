@@ -9,7 +9,7 @@ import healpy as hp
 #path = "/Volumes/DataDavy/Planck/"
 #path = "/disks/jansky/a/users/goldston/susan/Planck/"
 #infile1 = "HFI_SkyMap_353_2048_R2.02_full.fits"
-path="jansky/a/users/goldston/susan/Planck/SOSDPol_and_HI/"
+path="/disks/jansky/a/users/goldston/susan/Planck/SOSDPol_and_HI/"
 infile1="353GHz_IQU_2048_dipole_model_subtracted.fits"
 PfileQU = path + infile1 
 
