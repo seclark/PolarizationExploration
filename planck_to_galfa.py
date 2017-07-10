@@ -7,8 +7,10 @@ import numpy as np
 import healpy as hp
 
 #path = "/Volumes/DataDavy/Planck/"
-path = "/disks/jansky/a/users/goldston/susan/Planck/"
-infile1 = "HFI_SkyMap_353_2048_R2.02_full.fits"
+#path = "/disks/jansky/a/users/goldston/susan/Planck/"
+#infile1 = "HFI_SkyMap_353_2048_R2.02_full.fits"
+path="jansky/a/users/goldston/susan/Planck/SOSDPol_and_HI/"
+infile1="353GHz_IQU_2048_dipole_model_subtracted.fits"
 PfileQU = path + infile1 
 
 hdulistQU = fits.open(PfileQU)
@@ -17,9 +19,9 @@ tbdata = hdulistQU[1].data
 
 print(hdulistQU[1].header)
 
-Tdata = tbdata.field('I_STOKES').reshape(49152*1024)
-Qdata = tbdata.field('Q_STOKES').reshape(49152*1024)
-Udata = tbdata.field('U_STOKES').reshape(49152*1024)
+Tdata = tbdata.field('TEMPERATURE').reshape(49152*1024)
+Qdata = tbdata.field('Q_POLARISATION').reshape(49152*1024)
+Udata = tbdata.field('U_POLARISATION').reshape(49152*1024)
 #polfrac = np.sqrt(Qdata**2 + Udata**2)/Tdata
 
 #Gfile = '/Volumes/DataDavy/GALFA/DR2/FullSkyWide/GALFA_HI_W_S0900_V-090.9kms.fits'
@@ -50,6 +52,9 @@ TQUcube[2, :, :] = hp.pixelfunc.get_interp_val(Udata ,pp, tt, nest=True)
 
 ghdu[0].data = TQUcube
 ghdu[0].header["NAXIS3"] = 3
-outname = path + "HFI_SkyMap_353_2048_R2.02_full" + "_TQUprojected_GALFAallsky.fits"
+#outname = path + "HFI_SkyMap_353_2048_R2.02_full" + "_TQUprojected_GALFAallsky.fits"
+outname = path + "353GHz_IQU_2048_dipole_model_subtracted" + "_TQUprojected_GALFAallsky.fits"
 ghdu.writeto(outname)
+
+
 
