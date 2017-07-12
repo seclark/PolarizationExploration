@@ -21,7 +21,7 @@ print("loading", PfileQU)
 
 #print(hdulistQU[0].header)
 
-tbdata = fits.getdata("/Volumes/DataDavy/Planck/353GHz_IQU_2048_dipole_model_subtracted_Equ.fits")
+tbdata = fits.getdata(PfileQU)
 Tdata = tbdata[0, :].reshape(49152*1024)
 Qdata = tbdata[1, :].reshape(49152*1024)
 Udata = tbdata[2, :].reshape(49152*1024)
