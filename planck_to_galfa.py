@@ -37,8 +37,8 @@ ghdu = fits.open(Gfile)
 #plt.figure(figsize=(20,10))
 #plt.imshow(np.sum(ghdu[0].data[:, 100:900, 100:5000], 0))
 gwcs = wcs.WCS(Gfile)
-xax = np.linspace(1,ghdu[0].header['NAXIS1'], ghdu[0].header['NAXIS1'] ).reshape(ghdu[0].header['NAXIS1'], 1)
-yax = np.linspace(1,ghdu[0].header['NAXIS2'], ghdu[0].header['NAXIS2'] ).reshape(1,ghdu[0].header['NAXIS2'])
+xax = np.linspace(1,ghdu[0].header['NAXIS2'], ghdu[0].header['NAXIS2'] ).reshape(ghdu[0].header['NAXIS2'], 1)
+yax = np.linspace(1,ghdu[0].header['NAXIS1'], ghdu[0].header['NAXIS1'] ).reshape(1,ghdu[0].header['NAXIS1'])
 test = gwcs.all_pix2world(xax, yax, 1)
 RA = test[0]
 Dec = test[1]
@@ -48,20 +48,34 @@ tt = np.asarray(cg.l.rad)
 pp = np.pi/2-np.asarray(cg.b.rad)
 #taugalfa = hp.pixelfunc.get_interp_val(tau ,pp, tt, nest=True)
 
-TQUcube = np.zeros([3, ghdu[0].header['NAXIS1'], ghdu[0].header['NAXIS2']])
-TQUcube[0, :, :] = hp.pixelfunc.get_interp_val(Tdata ,pp, tt, nest=False)
-TQUcube[1, :, :] = hp.pixelfunc.get_interp_val(Qdata ,pp, tt, nest=False)
-TQUcube[2, :, :] = hp.pixelfunc.get_interp_val(Udata ,pp, tt, nest=False)
+#TQUcube = np.zeros([3, ghdu[0].header['NAXIS1'], ghdu[0].header['NAXIS2']])
+#TQUcube[0, :, :] = hp.pixelfunc.get_interp_val(Tdata ,pp, tt, nest=False)
+#TQUcube[1, :, :] = hp.pixelfunc.get_interp_val(Qdata ,pp, tt, nest=False)
+#TQUcube[2, :, :] = hp.pixelfunc.get_interp_val(Udata ,pp, tt, nest=False)
+Tproj = hp.pixelfunc.get_interp_val(Tdata ,pp, tt, nest=False)
+Qproj = hp.pixelfunc.get_interp_val(Qdata ,pp, tt, nest=False)
+Uproj = hp.pixelfunc.get_interp_val(Udata ,pp, tt, nest=False)
 
 #planckTproj = hp.pixelfunc.get_interp_val(Tdata.T ,pp, tt, nest=False)
 #planckQproj = hp.pixelfunc.get_interp_val(Qdata.T ,pp, tt, nest=False)
 #planckUproj = hp.pixelfunc.get_interp_val(Udata.T ,pp, tt, nest=False)
 
-ghdu[0].data = TQUcube
-ghdu[0].header["NAXIS3"] = 3
-#outname = path + "HFI_SkyMap_353_2048_R2.02_full" + "_TQUprojected_GALFAallsky.fits"
-outname = path + "353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING.fits"
+ghdu[0].data = Tproj
+outname = path + "I_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING.fits"
 ghdu.writeto(outname)
+
+ghdu[0].data = Qproj
+outname = path + "Q_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING.fits"
+ghdu.writeto(outname)
+
+ghdu[0].data = Uproj
+outname = path + "U_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING.fits"
+ghdu.writeto(outname)
+
+#ghdu[0].header["NAXIS3"] = 3
+##outname = path + "HFI_SkyMap_353_2048_R2.02_full" + "_TQUprojected_GALFAallsky.fits"
+#outname = path + "353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING.fits"
+#ghdu.writeto(outname)
 
 
 
