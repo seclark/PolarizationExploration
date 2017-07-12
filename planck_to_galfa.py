@@ -15,15 +15,20 @@ PfileQU = path + infile1
 
 print("loading", PfileQU)
 
-hdulistQU = fits.open(PfileQU)
-hdulistQU.info()
-tbdata = hdulistQU[0].data
+#hdulistQU = fits.open(PfileQU)
+#hdulistQU.info()
+#tbdata = hdulistQU[0].data
 
-print(hdulistQU[0].header)
+#print(hdulistQU[0].header)
 
-Tdata = tbdata.field('TEMPERATURE').reshape(49152*1024)
-Qdata = tbdata.field('Q_POLARISATION').reshape(49152*1024)
-Udata = tbdata.field('U_POLARISATION').reshape(49152*1024)
+tbdata = fits.getdata("/Volumes/DataDavy/Planck/353GHz_IQU_2048_dipole_model_subtracted_Equ.fits")
+Tdata = tbdata[0, :].reshape(49152*1024)
+Qdata = tbdata[1, :].reshape(49152*1024)
+Udata = tbdata[2, :].reshape(49152*1024)
+
+#Tdata = tbdata.field('TEMPERATURE').reshape(49152*1024)
+#Qdata = tbdata.field('Q_POLARISATION').reshape(49152*1024)
+#Udata = tbdata.field('U_POLARISATION').reshape(49152*1024)
 #polfrac = np.sqrt(Qdata**2 + Udata**2)/Tdata
 
 #Gfile = '/Volumes/DataDavy/GALFA/DR2/FullSkyWide/GALFA_HI_W_S0900_V-090.9kms.fits'
