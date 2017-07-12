@@ -13,11 +13,13 @@ path="/disks/jansky/a/users/goldston/susan/Planck/SOSDPol_and_HI/"
 infile1="353GHz_IQU_2048_dipole_model_subtracted_Equ.fits"
 PfileQU = path + infile1 
 
+print("loading", PfileQU)
+
 hdulistQU = fits.open(PfileQU)
 hdulistQU.info()
-tbdata = hdulistQU[1].data
+tbdata = hdulistQU[0].data
 
-print(hdulistQU[1].header)
+print(hdulistQU[0].header)
 
 Tdata = tbdata.field('TEMPERATURE').reshape(49152*1024)
 Qdata = tbdata.field('Q_POLARISATION').reshape(49152*1024)
