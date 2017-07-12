@@ -10,7 +10,7 @@ import healpy as hp
 #path = "/disks/jansky/a/users/goldston/susan/Planck/"
 #infile1 = "HFI_SkyMap_353_2048_R2.02_full.fits"
 path="/disks/jansky/a/users/goldston/susan/Planck/SOSDPol_and_HI/"
-infile1="353GHz_IQU_2048_dipole_model_subtracted.fits"
+infile1="353GHz_IQU_2048_dipole_model_subtracted_Equ.fits"
 PfileQU = path + infile1 
 
 hdulistQU = fits.open(PfileQU)
@@ -53,7 +53,7 @@ TQUcube[2, :, :] = hp.pixelfunc.get_interp_val(Udata ,pp, tt, nest=False)
 ghdu[0].data = TQUcube
 ghdu[0].header["NAXIS3"] = 3
 #outname = path + "HFI_SkyMap_353_2048_R2.02_full" + "_TQUprojected_GALFAallsky.fits"
-outname = path + "353GHz_IQU_2048_dipole_model_subtracted" + "_TQUprojected_GALFAallsky_RING.fits"
+outname = path + "353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING.fits"
 ghdu.writeto(outname)
 
 
