@@ -37,8 +37,8 @@ ghdu = fits.open(Gfile)
 #plt.figure(figsize=(20,10))
 #plt.imshow(np.sum(ghdu[0].data[:, 100:900, 100:5000], 0))
 gwcs = wcs.WCS(Gfile)
-xax = np.linspace(1,ghdu[0].header['NAXIS2'], ghdu[0].header['NAXIS2'] ).reshape(ghdu[0].header['NAXIS2'], 1)
-yax = np.linspace(1,ghdu[0].header['NAXIS1'], ghdu[0].header['NAXIS1'] ).reshape(1,ghdu[0].header['NAXIS1'])
+xax = np.linspace(1,ghdu[0].header['NAXIS1'], ghdu[0].header['NAXIS1'] ).reshape(ghdu[0].header['NAXIS1'], 1)
+yax = np.linspace(1,ghdu[0].header['NAXIS2'], ghdu[0].header['NAXIS2'] ).reshape(1,ghdu[0].header['NAXIS2'])
 test = gwcs.all_pix2world(xax, yax, 1)
 RA = test[0]
 Dec = test[1]
