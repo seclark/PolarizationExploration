@@ -67,15 +67,15 @@ Uproj = hp.pixelfunc.get_interp_val(Udata.T ,pp, tt, nest=False)
 #planckUproj = hp.pixelfunc.get_interp_val(Udata.T ,pp, tt, nest=False)
 
 ghdu[0].data = Tproj
-outname = path + "I_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING_T.fits"
+outname = path + "I_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING_T_Equ.fits"
 ghdu.writeto(outname)
 
 ghdu[0].data = Qproj
-outname = path + "Q_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING_T.fits"
+outname = path + "Q_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING_T_Equ.fits"
 ghdu.writeto(outname)
 
 ghdu[0].data = Uproj
-outname = path + "U_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING_T.fits"
+outname = path + "U_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING_T_Equ.fits"
 ghdu.writeto(outname)
 
 #ghdu[0].header["NAXIS3"] = 3
