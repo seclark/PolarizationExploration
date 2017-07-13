@@ -46,9 +46,12 @@ test = gwcs.all_pix2world(xax, yax, 1)
 RA = test[0]
 Dec = test[1]
 c = SkyCoord(ra=RA*u.degree, dec=Dec*u.degree, frame='icrs')
-cg = c.galactic
-tt = np.asarray(cg.l.rad)
-pp = np.pi/2-np.asarray(cg.b.rad)
+#cg = c.galactic
+#tt = np.asarray(cg.l.rad)
+#pp = np.pi/2-np.asarray(cg.b.rad)
+tt = np.asarray(c.ra.rad)
+pp = np.pi/2-np.asarray(c.dec.rad)
+
 #taugalfa = hp.pixelfunc.get_interp_val(tau ,pp, tt, nest=True)
 
 #TQUcube = np.zeros([3, ghdu[0].header['NAXIS1'], ghdu[0].header['NAXIS2']])
