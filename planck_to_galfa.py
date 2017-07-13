@@ -15,6 +15,9 @@ PfileQU = path + infile1
 
 print("loading", PfileQU)
 
+Nside = 2048
+Npix = 12*Nside**2
+
 #hdulistQU = fits.open(PfileQU)
 #hdulistQU.info()
 #tbdata = hdulistQU[0].data
@@ -22,9 +25,9 @@ print("loading", PfileQU)
 #print(hdulistQU[0].header)
 
 tbdata = fits.getdata(PfileQU)
-Tdata = tbdata[0, :].reshape(49152*1024)
-Qdata = tbdata[1, :].reshape(49152*1024)
-Udata = tbdata[2, :].reshape(49152*1024)
+Tdata = tbdata[0, :].reshape(Npix)
+Qdata = tbdata[1, :].reshape(Npix)
+Udata = tbdata[2, :].reshape(Npix)
 
 #Tdata = tbdata.field('TEMPERATURE').reshape(49152*1024)
 #Qdata = tbdata.field('Q_POLARISATION').reshape(49152*1024)
@@ -52,24 +55,24 @@ pp = np.pi/2-np.asarray(cg.b.rad)
 #TQUcube[0, :, :] = hp.pixelfunc.get_interp_val(Tdata ,pp, tt, nest=False)
 #TQUcube[1, :, :] = hp.pixelfunc.get_interp_val(Qdata ,pp, tt, nest=False)
 #TQUcube[2, :, :] = hp.pixelfunc.get_interp_val(Udata ,pp, tt, nest=False)
-Tproj = hp.pixelfunc.get_interp_val(Tdata ,pp, tt, nest=False)
-Qproj = hp.pixelfunc.get_interp_val(Qdata ,pp, tt, nest=False)
-Uproj = hp.pixelfunc.get_interp_val(Udata ,pp, tt, nest=False)
+Tproj = hp.pixelfunc.get_interp_val(Tdata.T ,pp, tt, nest=False)
+Qproj = hp.pixelfunc.get_interp_val(Qdata.T ,pp, tt, nest=False)
+Uproj = hp.pixelfunc.get_interp_val(Udata.T ,pp, tt, nest=False)
 
 #planckTproj = hp.pixelfunc.get_interp_val(Tdata.T ,pp, tt, nest=False)
 #planckQproj = hp.pixelfunc.get_interp_val(Qdata.T ,pp, tt, nest=False)
 #planckUproj = hp.pixelfunc.get_interp_val(Udata.T ,pp, tt, nest=False)
 
 ghdu[0].data = Tproj
-outname = path + "I_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING.fits"
+outname = path + "I_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING_T.fits"
 ghdu.writeto(outname)
 
 ghdu[0].data = Qproj
-outname = path + "Q_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING.fits"
+outname = path + "Q_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING_T.fits"
 ghdu.writeto(outname)
 
 ghdu[0].data = Uproj
-outname = path + "U_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING.fits"
+outname = path + "U_353GHz_IQU_2048_dipole_model_subtracted_Equ" + "_TQUprojected_GALFAallsky_RING_T.fits"
 ghdu.writeto(outname)
 
 #ghdu[0].header["NAXIS3"] = 3
