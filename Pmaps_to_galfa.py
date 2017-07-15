@@ -33,11 +33,11 @@ test = gwcs.all_pix2world(xax, yax, 1)
 RA = test[0]
 Dec = test[1]
 c = SkyCoord(ra=RA*u.degree, dec=Dec*u.degree, frame='icrs')
-#cg = c.galactic
-#tt = np.asarray(cg.l.rad)
-#pp = np.pi/2-np.asarray(cg.b.rad)
-tt = np.asarray(c.ra.rad)
-pp = np.pi/2-np.asarray(c.dec.rad)
+cg = c.galactic
+tt = np.asarray(cg.l.rad)
+pp = np.pi/2-np.asarray(cg.b.rad)
+#tt = np.asarray(c.ra.rad)
+#pp = np.pi/2-np.asarray(c.dec.rad)
 
 
 Pproj = hp.pixelfunc.get_interp_val(Pdata.T ,pp, tt, nest=False)
@@ -45,7 +45,7 @@ Pproj = hp.pixelfunc.get_interp_val(Pdata.T ,pp, tt, nest=False)
 
 
 ghdu[0].data = Pproj
-outname = path + "mapPsI-ForSusanClark_fwhm80_ns128_AngSt1" + "_projected_GALFAallsky_RING_T.fits"
+outname = path + "mapPsI-ForSusanClark_fwhm80_ns128_AngSt1" + "_projected_GALFAallsky_RING_T_Gal.fits"
 ghdu.writeto(outname)
 
 
