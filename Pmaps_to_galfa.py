@@ -20,7 +20,8 @@ print("loading", PfileQU)
 Nside = 128
 Npix = 12*Nside**2
 
-Pdata = fits.getdata(PfileQU)
+#Pdata = fits.getdata(PfileQU) # this works for P
+Pdata = hp.fitsfunc.read_map(PfileQU) # for faraday?
 
 
 #Gfile = '/Volumes/DataDavy/GALFA/DR2/FullSkyWide/GALFA_HI_W_S0900_V-090.9kms.fits'
