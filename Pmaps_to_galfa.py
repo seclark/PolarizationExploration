@@ -11,7 +11,8 @@ import healpy as hp
 #infile1 = "HFI_SkyMap_353_2048_R2.02_full.fits"
 path="/disks/jansky/a/users/goldston/susan/Planck/"
 #infile1="mapPsI-ForSusanClark_fwhm80_ns128_AngSt1.fits"
-infile1="mapS-ForSusanClark_fwhm80_ns128_AngSt1.fits"
+#infile1="mapS-ForSusanClark_fwhm80_ns128_AngSt1.fits"
+infile1="faraday.fits"
 PfileQU = path + infile1 
 
 print("loading", PfileQU)
@@ -46,7 +47,8 @@ Pproj = hp.pixelfunc.get_interp_val(Pdata.T ,pp, tt, nest=False)
 
 
 ghdu[0].data = Pproj
-outname = path + "mapS-ForSusanClark_fwhm80_ns128_AngSt1" + "_projected_GALFAallsky_RING_T_Gal.fits"
+#outname = path + "mapS-ForSusanClark_fwhm80_ns128_AngSt1" + "_projected_GALFAallsky_RING_T_Gal.fits"
+outname = path + "faraday" + "_projected_GALFAallsky_RING_T_Gal.fits"
 ghdu.writeto(outname)
 
 
