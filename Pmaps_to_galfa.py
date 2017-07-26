@@ -21,7 +21,7 @@ Nside = 128
 Npix = 12*Nside**2
 
 #Pdata = fits.getdata(PfileQU) # this works for P
-Pdata = hp.fitsfunc.read_map(PfileQU) # for faraday?
+Pdata = hp.fitsfunc.read_map(PfileQU, hdu=3) # for faraday?
 
 
 #Gfile = '/Volumes/DataDavy/GALFA/DR2/FullSkyWide/GALFA_HI_W_S0900_V-090.9kms.fits'
@@ -49,7 +49,7 @@ Pproj = hp.pixelfunc.get_interp_val(Pdata.T ,pp, tt, nest=False)
 
 ghdu[0].data = Pproj
 #outname = path + "mapS-ForSusanClark_fwhm80_ns128_AngSt1" + "_projected_GALFAallsky_RING_T_Gal.fits"
-outname = path + "faraday" + "_projected_GALFAallsky_RING_T_Gal.fits"
+outname = path + "faraday_depth" + "_projected_GALFAallsky_RING_T_Gal.fits"
 ghdu.writeto(outname)
 
 
